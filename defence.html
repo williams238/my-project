@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management System</title>
+    <link rel="stylesheet" href="defence.css">
+</head>
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>MEDICARE</h2>
+                <p>ADMIN PORTAL</p>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#registerCard">Patient Register</a></li>
+                <li><a href="#appointmentsCard">Appointments</a></li>
+                
+                
+            </ul>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h2 id="viewTitle">DASHBOARD</h2>
+                <div class="admin-profile"><span>Admin Williams</span></div>
+            </header>
+
+            <section class="content-body">
+
+                <!-- Dashboard view -->
+                <div id="dashboardView">
+                    <div class="dashboard-grid">
+
+                        <div class="left-section">
+                            <div class="welcome-banner">
+                                <h3>Welcome back! | Quick Stats</h3>
+                                <p>Clinic Management System (CMS) web dashboard overview.</p>
+                            </div>
+
+                            <div class="stats-cards-grid">
+                                <div class="stat-card">
+                                    <h4>TOTAL PATIENTS</h4>
+                                    <p class="stat-value" id="statTotal">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>TODAY'S APPOINTMENTS</h4>
+                                    <p class="stat-value" id="statToday">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>PENDING CHECK-INS</h4>
+                                    <p class="stat-value" id="statPending">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>COMPLETED</h4>
+                                    <p class="stat-value" id="statCompleted">0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="registration-card" id="registerCard">
+                            <h3>Register New Patient</h3>
+                            <form id="patient-form" novalidate>
+                                <div class="form-group">
+                                    <label for="patientName">Full Name</label>
+                                    <input type="text" id="patientName" placeholder="e.g. John Doe" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="patientAge">Age</label>
+                                        <input type="number" id="patientAge" placeholder="Age" min="0" max="120" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patientGender">Gender</label>
+                                        <select id="patientGender" required>
+                                            <option value="">Select</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="patientPhone">Phone Number</label>
+                                    <input type="tel" id="patientPhone" placeholder="11-digit phone number" maxlength="11" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="patientDept">Department</label>
+                                    <select id="patientDept" required>
+                                        <option value="">Select Department</option>
+                                        <option value="General">General Medicine</option>
+                                        <option value="Dental">Dental</option>
+                                        <option value="Pediatrics">Pediatrics</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="patientDoctor">Assigned Doctor</label>
+                                    <select id="patientDoctor" required>
+                                        <option value="">Select department first</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="patientProblem">Patient Problem / Symptoms</label>
+                                    <input type="text" id="patientProblem" placeholder="e.g. Tooth decay, severe fever..." required>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-save">Save Patient</button>
+                                    <button type="reset" class="btn-clear">Clear Form</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Patient table -->
+                    <div class="table-container-wrapper" id="appointmentsCard">
+                        <div class="table-header">
+                            <h3>Active Appointments &amp; Recent Patients</h3>
+                            <div class="table-filters">
+                                <select id="statusFilter" aria-label="Filter by status">
+                                    <option value="">All statuses</option>
+                                    <option value="WAITING">Waiting</option>
+                                    <option value="CONSULTING">Consulting</option>
+                                    <option value="COMPLETED">Completed</option>
+                                </select>
+                                <input type="text" id="searchInput" placeholder="Search by name, ID or department..." aria-label="Search patients">
+                            </div>
+                        </div>
+
+                        <div class="table-scroll">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Department</th>
+                                        <th>Doctor</th>
+                                        <th>Problem / Complaint</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="patientTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </section>
+        </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="defence.js"></script>
+</body>
+</html>
